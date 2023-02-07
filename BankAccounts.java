@@ -13,7 +13,7 @@ public class BankAccounts {
         char selection;
         System.out.println("Welcome!"); 
         do {
-            System.out.println("Please choose an option: [n]ew account, [d]isplay balance, [q]uit:");
+            System.out.println("Please choose an option: [n]ew account, [d]isplay balance, [a]dd to balance, [q]uit:");
             selection = input.next().charAt(0);
 
             if(selection == 'n'){
@@ -25,6 +25,9 @@ public class BankAccounts {
             }
             else if (selection == 'q'){
                 System.out.println("Thank you.");
+            }
+            else if (selection == 'a'){
+                addBalance(nameArray, moneyArray);
             }
             else{
                 System.out.println("Please enter a valid input.");
@@ -60,4 +63,24 @@ public class BankAccounts {
         System.out.printf("%.2f", balance);
         System.out.println();
     }
+
+    public static void addBalance(String[] nameArray, double[] moneyArray){ //Part 2 this method was added to allow user to add money to balance
+        
+        int index = 0;
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a name: ");
+        String name = input.nextLine();
+        for (int i = 0; i< nameArray.length; i++) {
+            if (nameArray[i].equals(name)) {
+                index = i;
+                break;
+            }
+        }
+        double balance = moneyArray[index];
+        System.out.println("Please enter the amount you want deposited: ");
+        double deposit = input.nextDouble();
+        balance += deposit;
+        moneyArray[index] = balance;
+    }
+    
 }
